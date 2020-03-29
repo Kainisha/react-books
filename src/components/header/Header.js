@@ -15,6 +15,7 @@ const HeaderStyled = styled.header`
   -webkit-box-shadow: 0px 5px 5px 0px rgba(181, 181, 181, 1);
   -moz-box-shadow: 0px 5px 5px 0px rgba(181, 181, 181, 1);
   box-shadow: 0px 5px 5px 0px rgba(181, 181, 181, 1);
+  z-index: 1000;
 `;
 
 const Header = () => (

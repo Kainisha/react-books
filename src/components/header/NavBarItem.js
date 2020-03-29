@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -34,5 +35,10 @@ const NavBarItem = ({ to, children }) => (
     </LinkWrapper>
   </ItemWrapperStyled>
 );
+
+NavBarItem.prototype = {
+  children: PropTypes.element.isRequired,
+  to: PropTypes.string.isRequired,
+};
 
 export default NavBarItem;

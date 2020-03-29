@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GlobalStyle from 'theme/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 
@@ -13,6 +14,10 @@ const MainTheme = ({ children }) => {
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   );
+};
+
+MainTheme.prototype = {
+  children: PropTypes.element.isRequired,
 };
 
 export default MainTheme;
