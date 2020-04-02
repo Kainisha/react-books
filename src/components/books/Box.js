@@ -58,7 +58,7 @@ const TitleStyled = styled.div`
 `;
 
 const AuthorStyled = styled.div`
-  color: lightgrey;
+  color: grey;
   margin-top: 1rem;
 `;
 
