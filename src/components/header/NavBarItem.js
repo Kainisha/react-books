@@ -28,9 +28,9 @@ const LinkWrapper = styled(NavLink)`
   }
 `;
 
-const NavBarItem = ({ to, children }) => (
+const NavBarItem = ({ to, children, exact }) => (
   <ItemWrapperStyled>
-    <LinkWrapper to={to} activeClassName="active">
+    <LinkWrapper to={to} exact={exact} activeClassName="active">
       {children}
     </LinkWrapper>
   </ItemWrapperStyled>

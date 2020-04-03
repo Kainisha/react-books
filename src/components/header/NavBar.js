@@ -10,6 +10,9 @@ const NavBarWrapperStyled = styled.nav`
 
 const NavBar = () => (
   <NavBarWrapperStyled>
+    <NavBarItem to="/" exact>
+      Home
+    </NavBarItem>
     <NavBarItem to="/books">Books</NavBarItem>
     <NavBarItem to="/whishlist">Whishlist</NavBarItem>
   </NavBarWrapperStyled>

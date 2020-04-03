@@ -1,7 +1,8 @@
-import { FETCH_REQUEST, FETCH_BOOKS, FETCH_SUCCESS } from 'actions';
+import { FETCH_REQUEST, FETCH_BOOKS, FETCH_WHISHLIST, REMOVE_WHISHLIST } from 'actions';
 
 const initialState = {
   books: [],
+  whishlist: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -16,11 +17,18 @@ export const reducer = (state = initialState, action) => {
         ...state,
         books: [...action.payload.books],
       };
-    case FETCH_SUCCESS:
+    case FETCH_WHISHLIST:
       return {
         ...state,
-        books: [...action.payload.books],
+        whishlist: [...action.payload.whishlist],
       };
+    case REMOVE_WHISHLIST: {
+      const whishlist = state.whishlist.filter((book) => book.id !== action.payload.id);
+      return {
+        ...state,
+        whishlist,
+      };
+    }
     default:
       return state;
   }

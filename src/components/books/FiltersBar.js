@@ -5,7 +5,7 @@ import TextInput from 'components/inputs/Text';
 const FiltersBarsStyled = styled.div`
   background: #fafafa;
   border: 2px solid lightgrey;
-  height: 3rem;
+  height: 4rem;
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem 2rem;
