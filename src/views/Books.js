@@ -7,7 +7,12 @@ import Grid from 'components/books/Grid';
 
 class Books extends React.Component {
   componentDidMount() {
-    const { fetchBooks } = this.props;
+    const { fetchBooks, books } = this.props;
+
+    if (books.length !== 0) {
+      return;
+    }
+
     fetchBooks();
   }
 

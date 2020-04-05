@@ -6,6 +6,7 @@ import NavBarItem from 'components/header/NavBarItem';
 const NavBarWrapperStyled = styled.nav`
   display: flex;
   align-items: center;
+  height: 100%;
 `;
 
 const NavBar = () => (

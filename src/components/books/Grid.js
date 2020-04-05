@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _chunk from 'lodash/chunk';
 
 import Box from 'components/books/Box';
 import FiltersBar from 'components/books/FiltersBar';
+import Pager from 'components/pagination/pager/Pager';
 
 const GridWrapperStyled = styled.div`
   display: grid;
@@ -12,52 +14,74 @@ const GridWrapperStyled = styled.div`
   grid-row-gap: 1rem;
 `;
 
-class Grid extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      books: props.books,
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { books } = this.props;
-
-    if (prevProps.books.length !== books.length) {
-      this.setState({ books });
-    }
-  }
-
-  filterBooks = (value) => {
-    const { books: initBooks } = this.props;
-
-    if (!value) {
-      this.setState({ books: initBooks });
-      return;
-    }
-
-    const books = initBooks.filter((book) =>
-      book.title.toLowerCase().includes(value.toLowerCase()),
-    );
-    this.setState({ books });
+const Grid = ({ books }) => {
+  const initState = {
+    page: 1,
+    perPage: 4,
+    filterValue: '',
   };
 
-  render() {
-    const { books } = this.state;
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'FILTER':
+        return {
+          ...state,
+          filterValue: action.filterValue,
+        };
+      case 'CHANGE_PAGE':
+        return {
+          ...state,
+          page: action.page,
+        };
+      case 'CHANGE_PER_PAGE':
+        return {
+          ...state,
+          perPage: action.perPage,
+        };
+      default:
+        return state;
+    }
+  };
 
-    return (
-      <>
-        <FiltersBar filterBooks={this.filterBooks} />
-        <GridWrapperStyled>
-          {books.map(({ id, title, author, image }) => (
-            <Box title={title} author={author} image={image} key={id} />
-          ))}
-        </GridWrapperStyled>
-      </>
+  const [state, dispatch] = useReducer(reducer, initState);
+
+  const filterBooks = (value) => dispatch({ type: 'FILTER', filterValue: value });
+  const changePage = (page) => dispatch({ type: 'CHANGE_PAGE', page });
+
+  const filteredBooks = () => {
+    if (!books.length || state.filterValue.trim() === '') {
+      return books;
+    }
+    return books.filter((book) =>
+      book.title.toLowerCase().includes(state.filterValue.toLowerCase()),
     );
-  }
-}
+  };
+
+  const computedBooks = () => {
+    const filtered = filteredBooks();
+    if (!filtered.length) {
+      return filtered;
+    }
+    return _chunk(filtered, state.perPage)[state.page - 1];
+  };
+
+  return (
+    <>
+      <FiltersBar filterBooks={filterBooks} />
+      <GridWrapperStyled>
+        {computedBooks().map(({ id, title, author, image }) => (
+          <Box title={title} author={author} image={image} key={id} id={id} />
+        ))}
+      </GridWrapperStyled>
+      <Pager
+        perPage={state.perPage}
+        items={filteredBooks()}
+        page={state.page}
+        changePage={changePage}
+      />
+    </>
+  );
+};
 
 Grid.propTypes = {
   books: PropTypes.array.isRequired,

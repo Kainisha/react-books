@@ -3,6 +3,10 @@ export const FETCH_BOOKS = 'FETCH_BOOKS';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_WHISHLIST = 'FETCH_WHISHLIST';
 export const REMOVE_WHISHLIST = 'REMOVE_WHISHLIST';
+export const ADD_WHISHLIST = 'ADD_WHISHLIST';
+export const TOGGLE_CART_MODAL = 'TOGGLE_CART_MODAL';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const DELETE_FROM_CART = 'DELETE_FROM_CART';
 
 export const fetchBooks = () => (dispatch) => {
   return dispatch({
@@ -75,6 +79,34 @@ export const fetchWhishlist = () => (dispatch) => {
 export const removeWhishlist = (id) => (dispatch) => {
   return dispatch({
     type: REMOVE_WHISHLIST,
+    payload: { id },
+  });
+};
+
+export const addWhishlist = (book) => (dispatch) => {
+  return dispatch({
+    type: ADD_WHISHLIST,
+    payload: { book },
+  });
+};
+
+export const toggleCartModal = (isShow) => (dispatch) => {
+  return dispatch({
+    type: TOGGLE_CART_MODAL,
+    payload: { isShow },
+  });
+};
+
+export const addToCart = (book) => (dispatch) => {
+  return dispatch({
+    type: ADD_TO_CART,
+    payload: { book },
+  });
+};
+
+export const deleteFromCart = (id) => (dispatch) => {
+  return dispatch({
+    type: DELETE_FROM_CART,
     payload: { id },
   });
 };

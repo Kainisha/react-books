@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import BoxButtons from 'components/books/BoxButtons';
+import { useToasts } from 'react-toast-notifications';
+import { addWhishlist as addWhishlistAction, addToCart as addToCartAction } from 'actions';
 
 const BoxWrapperStyles = styled.div`
   min-width: 15rem;
@@ -62,34 +65,48 @@ const AuthorStyled = styled.div`
   margin-top: 1rem;
 `;
 
-class Box extends React.Component {
-  handleCartClick = () => {
-    console.log('test cart');
+const Box = ({ addWhishlist, addToCart, id, title, image, author }) => {
+  const { addToast } = useToasts();
+
+  const handleCartClick = () => {
+    const book = { id, title, image, author };
+    addToCart(book);
+    addToast('Book added to cart', { appearance: 'info' });
   };
 
-  handleWhishlistClick = () => {
-    console.log('test whishlist');
+  const handleWhishlistClick = () => {
+    const book = { id, title, image, author };
+    addWhishlist(book);
+    addToast('Book added to whishlist', { appearance: 'success' });
   };
 
-  render() {
-    const { title, author, image } = this.props;
+  return (
+    <BoxWrapperStyles>
+      <ImageWrapperStyled href="/">
+        <ImageStyled src={image} />
+      </ImageWrapperStyled>
+      <ContentStyled>
+        <BoxButtons
+          onCartClick={() => handleCartClick()}
+          onWhishlistClick={() => handleWhishlistClick()}
+        />
+        <TitleStyled>{title}</TitleStyled>
+        <AuthorStyled>{author}</AuthorStyled>
+      </ContentStyled>
+    </BoxWrapperStyles>
+  );
+};
 
-    return (
-      <BoxWrapperStyles>
-        <ImageWrapperStyled href="/">
-          <ImageStyled src={image} />
-        </ImageWrapperStyled>
-        <ContentStyled>
-          <BoxButtons
-            onCartClick={() => this.handleCartClick()}
-            onWhishlistClick={() => this.handleWhishlistClick()}
-          />
-          <TitleStyled>{title}</TitleStyled>
-          <AuthorStyled>{author}</AuthorStyled>
-        </ContentStyled>
-      </BoxWrapperStyles>
-    );
-  }
-}
+const mapStateToProps = (state) => {
+  const { books } = state;
+  return { books };
+};
 
-export default Box;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addWhishlist: (book) => dispatch(addWhishlistAction(book)),
+    addToCart: (book) => dispatch(addToCartAction(book)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Box);
