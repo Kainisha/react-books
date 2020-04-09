@@ -1,0 +1,12 @@
+.block {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 1rem;
+}
+
+@media (min-width: 1200px) {
+    .block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ItemWrapperStyled = styled.li`
-  width: 8rem;
   list-style: none;
   text-align: center;
   height: 100%;
@@ -21,6 +20,7 @@ const LinkWrapper = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 1rem;
 
   &:hover,
   &.active {
