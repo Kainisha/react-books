@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import cx from 'classnames';
 import style from './CartItem.module.scss';
@@ -24,6 +25,14 @@ const CartItem = ({ id, image, title, author, onDelete }) => {
       </div>
     </div>
   );
+};
+
+CartItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default CartItem;

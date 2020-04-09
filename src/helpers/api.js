@@ -5,7 +5,6 @@ export const fetchData = async ({ type }) => {
     const response = await ax.get(`http://localhost:1337/${type}`);
     return await response.data;
   } catch (error) {
-    console.log(error);
-    return { error };
+    return { error: error.message };
   }
 };

@@ -11,10 +11,15 @@ const ViewStyled = styled.div`
   padding: 2rem;
 `;
 
-const MainTemplate = ({ children }) => (
+const MainTemplate = ({ children, title }) => (
   <>
     <Header />
-    <ViewStyled>{children}</ViewStyled>
+    <ViewStyled>
+      <>
+        <h1>{title}</h1>
+        {children}
+      </>
+    </ViewStyled>
     <Cart />
   </>
 );

@@ -9,9 +9,17 @@ import Pager from 'components/pagination/pager/Pager';
 
 const GridWrapperStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+
+  @media (min-width: 550px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Grid = ({ books }) => {

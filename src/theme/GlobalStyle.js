@@ -18,6 +18,12 @@ const GlobalStyle = createGlobalStyle`
     .box.box {
         background: yellow;
     }
+
+    h1  {
+        font-size: 2rem;
+        margin-top: 1rem;
+        font-weight: bold;
+    }
 `;
 
 export default GlobalStyle;

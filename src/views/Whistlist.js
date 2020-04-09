@@ -26,7 +26,7 @@ class Whishlist extends React.Component {
   render() {
     const { whishlist } = this.props;
     return (
-      <MainTemplate>
+      <MainTemplate title="Whishlist">
         <List books={whishlist} onDelete={this.handleDelete} />
       </MainTemplate>
     );

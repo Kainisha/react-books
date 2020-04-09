@@ -7,9 +7,28 @@ const ItemStyled = styled.div`
   grid-template-columns: 5rem 1fr 1rem;
   grid-template-areas: 'image info delete';
   grid-column-gap: 1rem;
-  height: 5rem;
   border: 1px solid lightgray;
   padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+  color: #4a4a4a;
+  position: relative;
+
+  &::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+    box-shadow: 0 1em 1em 0.075em rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.02);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
 `;
 
 const ImageStyled = styled.div`

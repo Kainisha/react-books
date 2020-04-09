@@ -5,10 +5,16 @@ import Panel from 'components/home/panel/Panel';
 
 const Home = () => {
   const [newBooks, setNewBooks] = useState([]);
+  const [error, setError] = useState('');
 
   const getData = async () => {
     const data = await fetchData({ type: 'books' });
-    setNewBooks(data);
+
+    if (!data.error) {
+      setNewBooks(data);
+      return;
+    }
+    setError(data.error);
   };
 
   useEffect(() => {
@@ -17,12 +23,15 @@ const Home = () => {
 
   return (
     <MainTemplate>
-      <div className="columns">
-        <div className="column">
-          <Panel label="New" items={newBooks} />
+      <>
+        <div className="notification is-danger">{error}</div>
+        <div className="columns">
+          <div className="column">
+            <Panel label="New" items={newBooks} />
+          </div>
+          <div className="column" />
         </div>
-        <div className="column" />
-      </div>
+      </>
     </MainTemplate>
   );
 };

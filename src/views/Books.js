@@ -20,7 +20,7 @@ class Books extends React.Component {
     const { books } = this.props;
 
     return (
-      <MainTemplate>
+      <MainTemplate title="Books">
         <Grid books={books} />
       </MainTemplate>
     );
