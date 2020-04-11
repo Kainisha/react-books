@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import BoxButtons from 'components/books/BoxButtons';
+import LazyImage from 'components/images/lazyImage/LazyImage';
 import { useToasts } from 'react-toast-notifications';
 import { addWhishlist as addWhishlistAction, addToCart as addToCartAction } from 'actions';
 
@@ -41,7 +42,7 @@ const ImageWrapperStyled = styled.a`
   align-items: center;
 `;
 
-const ImageStyled = styled.img`
+const ImageStyled = styled(LazyImage)`
   max-height: 100%;
   max-width: 100%;
 `;
@@ -83,7 +84,7 @@ const Box = ({ addWhishlist, addToCart, id, title, image, author }) => {
   return (
     <BoxWrapperStyles>
       <ImageWrapperStyled href="/">
-        <ImageStyled src={image} />
+        <ImageStyled src={image} effect="blur" height="8rem" />
       </ImageWrapperStyled>
       <ContentStyled>
         <BoxButtons

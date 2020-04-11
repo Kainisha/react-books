@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <MainTemplate>
       <>
-        <div className="notification is-danger">{error}</div>
+        {error.trim() !== '' && <div className="notification is-danger">{error}</div>}
         <div className="columns">
           <div className="column">
             <Panel label="New" items={newBooks} />

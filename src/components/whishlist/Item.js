@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DeleteIcon from '@material-ui/icons/Delete';
+import LazyImage from 'components/images/lazyImage/LazyImage';
 
 const ItemStyled = styled.div`
   display: grid;
@@ -33,7 +34,7 @@ const ItemStyled = styled.div`
 
 const ImageStyled = styled.div`
   grid-area: image;
-  height: 100%;
+  height: 4rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -89,7 +90,7 @@ const DeleteButtonStyled = styled.button`
 const Item = ({ image, title, author, onDelete, id }) => (
   <ItemStyled>
     <ImageStyled>
-      <img src={image} alt="" />
+      <LazyImage src={image} effect="blur" height="4rem" />
     </ImageStyled>
     <InfoStyled>
       <TitleStyled>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Delete';
+import LazyImage from 'components/images/lazyImage/LazyImage';
 import cx from 'classnames';
 import style from './CartItem.module.scss';
 
@@ -12,7 +13,7 @@ const CartItem = ({ id, image, title, author, onDelete }) => {
   return (
     <div className={cx(style.item)}>
       <div className={style.image}>
-        <img src={image} alt="" />
+        <LazyImage src={image} effect="blur" height="3rem" />
       </div>
       <div className={style.info}>
         <p className="title is-6">{title}</p>

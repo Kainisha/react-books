@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyImage from 'components/images/lazyImage/LazyImage';
 import cx from 'classnames';
 import style from './Box.module.scss';
 
@@ -7,7 +8,7 @@ const Box = ({ image, title, author }) => (
     <article className="media">
       <div className="media-left">
         <figure className={cx('image', 'is-64x64', style.image)}>
-          <img src={image} alt="" />
+          <LazyImage src={image} effect="blur" height="64px" />
         </figure>
       </div>
       <div className="media-content">

@@ -5,8 +5,8 @@ import style from './Panel.module.scss';
 
 const Panel = ({ label, items }) => {
   return (
-    <div className="panel">
-      <p className="panel-heading">{label}</p>
+    <div className="panel has-background-white-ter">
+      <p className="panel-heading has-background-primary has-text-white">{label}</p>
       <div className={cx('panel-block', style.block)}>
         {items.map(({ image, author, title }) => (
           <Box image={image} author={author} title={title} />
