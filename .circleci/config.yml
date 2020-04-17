@@ -18,8 +18,17 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm run lint
+  tests:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm run test
 workflows:
     build-and-test:
       jobs:
         - build
         - static-tests
+        - tests
