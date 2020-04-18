@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import _debounce from 'lodash/debounce';
@@ -42,16 +43,33 @@ class Text extends React.Component {
   };
 
   render() {
-    const { search } = this.props;
+    const { search, placeholder } = this.props;
     const { value } = this.state;
 
     return (
       <TextWrapperStyled>
-        <TextStyled type="text" onChange={this.handleChange} value={value} />
+        <TextStyled
+          type="text"
+          onChange={this.handleChange}
+          value={value}
+          placeholder={placeholder}
+        />
         {search && <SearchIcon />}
       </TextWrapperStyled>
     );
   }
 }
+
+Text.propTypes = {
+  search: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+};
+
+Text.defaultProps = {
+  search: false,
+  placeholder: 'text',
+  onChange: () => {},
+};
 
 export default Text;
