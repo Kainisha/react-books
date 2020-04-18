@@ -16,6 +16,7 @@ jobs:
     steps:
       - node/with-cache:
           steps:
+            - checkout
             - run: npm run lint
   components-tests:
     executor:
@@ -23,6 +24,7 @@ jobs:
     steps:
       - node/with-cache:
           steps:
+            - checkout
             - run: npm run test -p ButtonIcon
   views-tests:
     executor:
@@ -32,15 +34,16 @@ jobs:
           steps:
             - run: npm run test -p Home
 workflows:
-    build-tests:
-      jobs:
-        - build
-        - static-tests:
-            requires:
-              - build
-        - components-tests:
-            requires:
-              - static-tests
-        - views-tests:
-            requires:
-              - components-tests
+  version: 2
+  build-tests:
+    jobs:
+      - build
+      - static-tests:
+          requires:
+            - build
+      - components-tests:
+          requires:
+            - static-tests
+      - views-tests:
+          requires:
+            - components-tests
