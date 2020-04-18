@@ -37,12 +37,12 @@ workflows:
         - build
     tests:
       jobs:
-        - static-tests
-          requires:
-            - build
-        - components-tests
-          requires:
-            - static-tests
-        - views-tests
-          requires:
-            - components-tests
+        - static-tests:
+            requires:
+              - build
+        - components-tests:
+            requires:
+            - static-tests:
+        - views-tests:
+            requires:
+              - components-tests
