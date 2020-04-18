@@ -14,22 +14,27 @@ jobs:
     executor:
       name: node/default
     steps:
-      - checkout
       - node/with-cache:
           steps:
             - run: npm run lint
-  tests:
+  components-tests:
     executor:
       name: node/default
     steps:
-      - checkout
       - node/with-cache:
           steps:
-            - run: npm run test
+            - run: npm run test -p ButtonIcon
+  views-tests:
+    executor:
+      name: node/default
+    steps:
+      - node/with-cache:
+          steps:
             - run: npm run test -p Home
 workflows:
     build-and-test:
       jobs:
         - build
         - static-tests
-        - tests
+        - components-tests
+        - views-tests
