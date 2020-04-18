@@ -38,9 +38,5 @@ workflows:
     tests:
       jobs:
         - static-tests
-        - components-tests:
-            requires:
-            - static-tests:
-        - views-tests:
-            requires:
-              - components-tests
+        - components-tests
+        - views-tests
