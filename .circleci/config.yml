@@ -26,6 +26,7 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm run test
+            - run: npm run test -p Home
 workflows:
     build-and-test:
       jobs:
