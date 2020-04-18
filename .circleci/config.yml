@@ -37,7 +37,7 @@ workflows:
         - build
     tests:
       jobs:
-        - static-tests:
+        - static-tests
         - components-tests:
             requires:
             - static-tests:
