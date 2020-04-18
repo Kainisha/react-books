@@ -44,7 +44,7 @@ workflows:
             - build
       - components-tests:
           requires:
-            - static-tests
+            - build
       - views-tests:
           requires:
-            - components-tests
+            - build
