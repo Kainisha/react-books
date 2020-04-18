@@ -32,11 +32,15 @@ jobs:
           steps:
             - run: npm run test -p Home
 workflows:
-    build:
+    build-tests:
       jobs:
         - build
-    tests:
-      jobs:
-        - static-tests
-        - components-tests
-        - views-tests
+        - static-tests:
+            requires:
+              - build
+        - components-tests:
+            requires:
+              - static-tests
+        - views-tests:
+            requires:
+              - components-tests
