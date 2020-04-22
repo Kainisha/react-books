@@ -88,7 +88,7 @@ const DeleteButtonStyled = styled.button`
 `;
 
 const Item = ({ image, title, author, onDelete, id }) => (
-  <ItemStyled>
+  <ItemStyled className="whishlist__item">
     <ImageStyled>
       <LazyImage src={image} effect="blur" height="4rem" />
     </ImageStyled>
