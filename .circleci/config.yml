@@ -63,6 +63,9 @@ workflows:
             - static-tests
             - components-tests
             - views-tests
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - hold
