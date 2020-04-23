@@ -39,7 +39,7 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - npm run build
+      - run: npm run build
   deploy:
     executor:
       name: node/default
