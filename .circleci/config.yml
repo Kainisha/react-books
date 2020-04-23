@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: circleci/node@2.0.0
+  node: thefrontside/react@0.2.0
 jobs:
   dependiences:
     executor:
