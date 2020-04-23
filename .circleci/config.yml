@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: thefrontside/react@0.2.0
+  node: circleci/node@1.1.6
 jobs:
   dependiences:
     executor:
@@ -39,9 +39,7 @@ jobs:
       name: node/default
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm run build
+      - npm run build
   deploy:
     executor:
       name: node/default
