@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build:
+  dependiences:
     executor:
       name: node/default
     steps:
@@ -34,17 +34,41 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm run test -p Home
+  deploy:
+    docker:
+      - image: node:11.10.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+      - run: npx netlify deploy --prod
 workflows:
   version: 2
   build-tests:
     jobs:
-      - build
+      - dependiences
       - static-tests:
           requires:
-            - build
+            - dependiences
       - components-tests:
           requires:
-            - build
+            - dependiences
       - views-tests:
           requires:
-            - build
+            - dependiences
+      - hold:
+          type: approval
+          requires:
+            - static-tests
+            - components-tests
+            - views-tests
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - hold
+          filters:
+            branches:
+              only: master

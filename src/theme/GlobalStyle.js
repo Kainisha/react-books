@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components/macro';
 import 'bulma/css/bulma.css';
 import 'react-toastify/dist/ReactToastify.css';
 
