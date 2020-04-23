@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from 'store';
 import { ToastProvider } from 'react-toast-notifications';
+import GlobalStyle from 'theme/GlobalStyle';
 import Home from 'views/Home';
 import Books from 'views/Books';
 import Loading from 'components/utilities/Loading';
@@ -30,6 +31,7 @@ function App() {
           </MainTheme>
         </BrowserRouter>
       </ToastProvider>
+      <GlobalStyle />
     </Provider>
   );
 }

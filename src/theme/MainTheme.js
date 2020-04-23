@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GlobalStyle from 'theme/GlobalStyle';
+
 import { ThemeProvider } from 'styled-components';
 
 const theme = {
@@ -10,7 +10,6 @@ const theme = {
 const MainTheme = ({ children }) => {
   return (
     <>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   );
