@@ -34,7 +34,7 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm run test -p Home
-  build-deploy:
+  deploy:
     docker:
       - image: node:11.10.1
     working_directory: ~/repo
@@ -47,14 +47,6 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npx netlify deploy --prod
-  deploy:
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - run: npx netlify deploy --prod
 workflows:
   version: 2
   build-tests:
@@ -75,6 +67,9 @@ workflows:
             - static-tests
             - components-tests
             - views-tests
-      - build-deploy:
+      - deploy:
           requires:
             - hold
+          filters:
+            branches:
+              only: master
