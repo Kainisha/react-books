@@ -34,12 +34,19 @@ jobs:
       - node/with-cache:
           steps:
             - run: npm run test -p Home
-  build:
-    executor:
-      name: node/default
+  build-deploy:
+    docker:
+      - image: node:11.10.1
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run: npm install
       - run: npm run build
+      - run: npx netlify deploy --prod
   deploy:
     executor:
       name: node/default
@@ -62,18 +69,12 @@ workflows:
       - views-tests:
           requires:
             - dependiences
-      - build:
+      - hold:
+          type: approval
           requires:
             - static-tests
             - components-tests
             - views-tests
-      - hold:
-          type: approval
-          requires:
-              - build
-      - deploy:
+      - build-deploy:
           requires:
             - hold
-          filters:
-            branches:
-              only: master
