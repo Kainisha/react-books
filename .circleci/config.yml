@@ -43,7 +43,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npm install netlify-cli -g
-      - run: netlify deploy --prod
+      - run: netlify deploy --prod --dir build --auth acdccc8efc3c17ec84a54bee2944ae9c2027d438fabf93a2cc787857a29623fe --site bf2810cb-230b-49f4-9721-1c8971fae473
 workflows:
   version: 2
   build-tests:
